@@ -11,7 +11,7 @@ const image = require("./controllers/image");
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; 
 
-/* const db = knex({
+const db = knex({
   client: "pg",
   connection: {
     host: "127.0.0.1",
@@ -19,14 +19,14 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
     password: "pass123",
     database: "smart-brain",
   },
-}); */
-const db = knex({
+});
+/* const db = knex({
   client: "pg",
   connection: {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   },
-});
+}); */
 
 const app = express();
 
@@ -55,7 +55,7 @@ app.post("/imageurl", (req, res) => {
   image.handleApiCall(req, res, db);
 });
 
-const PORT = process.env.PORT
+const PORT = 3000//process.env.PORT
 
 app.listen(PORT, () => {
   console.log(`running on port ${PORT}` );
