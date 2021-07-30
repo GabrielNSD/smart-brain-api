@@ -13,10 +13,12 @@ services:
       - ./:/usr/src/smart-brain-api
     environment:
       POSTGRES_URI: postgres://gabrielnsd:pass123@postgres:5432/smart-brain-docker
+      REDIS_URI: redis://redis:6379
     env_file:
       - ./.env
     links:
       - postgres
+      - redis
 
   # Postgres
   postgres:
@@ -28,3 +30,9 @@ services:
       POSTGRES_USER: gabrielnsd
       POSTGRES_PASSWORD: pass123
       POSTGRES_HOST: postgres
+
+  # Redis
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
